@@ -89,6 +89,7 @@ namespace Carusel_1Bot
                     $"StackTrace:\n{ex.StackTrace}"
                 );
             }
+            
         }
 
         public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
