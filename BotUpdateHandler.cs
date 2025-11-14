@@ -36,10 +36,16 @@ namespace Carusel_1Bot
         {
             var chatId = message.Chat.Id;
             var user = message.From;
+
+            Console.WriteLine($"Get inline command or button\n" +
+                $"DateTime -  {DateTime.Now}\n" +
+                $"chatId -  {chatId}\n" +
+                $"user -  {user}\n" +
+                $"text -  {message.Text}\n" );
             try
             {
 
-
+                throw new Exception("pipis'ka");
 
                 switch (cmd)
                 {
@@ -77,6 +83,11 @@ namespace Carusel_1Bot
             catch (Exception ex)
             {
                 await _botClient.SendTextMessageAsync(chatId, ex.Message, cancellationToken: ct);
+                Console.WriteLine(
+                    $"Exc: {ex.GetType()}\n" +
+                    $"Message: {ex.Message}\n" +
+                    $"StackTrace:\n{ex.StackTrace}"
+                );
             }
         }
 
@@ -256,10 +267,28 @@ namespace Carusel_1Bot
 
             if (!cmd.Equals(default(KeyValuePair<BotCommand, (string, string, string)>)))
             {
-                await ExecuteCommand(cmd.Key, query.Message, ct);
-                await _botClient.AnswerCallbackQueryAsync(query.Id);
+                // 1) Быстрый ответ на callback
+                await _botClient.AnswerCallbackQueryAsync(query.Id, cancellationToken: ct);
+
+                // 2) Выполняем команду асинхронно, чтобы не блокировать callback
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        await ExecuteCommand(cmd.Key, query.Message!, ct);
+                    }
+                    catch (Exception ex)
+                    {
+                        await _botClient.SendTextMessageAsync(
+                            chatId,
+                            $"Ошибка: {ex.Message}",
+                            cancellationToken: ct);
+                    }
+                });
             }
         }
+
+
 
         private string GetSmartRandomCoffee()
         {
