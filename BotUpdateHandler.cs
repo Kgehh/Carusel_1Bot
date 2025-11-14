@@ -222,11 +222,7 @@ namespace Carusel_1Bot
                         "Роберт Лох",
                         cancellationToken: ct);
             }
-            else if (username == "Tvarlllna")
-            {
-                _igorCounter++;
-                await _botClient.SendTextMessageAsync(chatId, $"Игорь навонял в чате {_igorCounter} раз", cancellationToken: ct);
-            }
+
         }
 
         private async Task SendMenuAsync(long chatId, CancellationToken ct)
