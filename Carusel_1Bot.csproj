@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Release_SelfContainedUbuntu\**" />
+    <EmbeddedResource Remove="Release_SelfContainedUbuntu\**" />
+    <None Remove="Release_SelfContainedUbuntu\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\Accord.jpg" />
     <None Remove="Images\Calinvagen.jpg" />
     <None Remove="Images\Cresta.jpg" />
