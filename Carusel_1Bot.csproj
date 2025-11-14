@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Release_SelfContainedUbuntu\**" />
-    <EmbeddedResource Remove="Release_SelfContainedUbuntu\**" />
-    <None Remove="Release_SelfContainedUbuntu\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Images\Accord.jpg" />
     <None Remove="Images\Calinvagen.jpg" />
     <None Remove="Images\Cresta.jpg" />
@@ -37,6 +31,10 @@
     <Content Include="Images\Cars\Gnivic.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Release_SelfContainedUbuntu\" />
   </ItemGroup>
 
 </Project>
