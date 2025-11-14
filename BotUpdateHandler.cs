@@ -45,8 +45,6 @@ namespace Carusel_1Bot
             try
             {
 
-                throw new Exception("pipis'ka");
-
                 switch (cmd)
                 {
                     case BotCommand.Start:
