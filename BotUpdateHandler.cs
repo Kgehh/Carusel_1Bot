@@ -146,26 +146,9 @@ namespace Carusel_1Bot
             var rnd = new Random();
             var carName = _randomLib.Cars[rnd.Next(_randomLib.Cars.Count)];
 
-            // Генерация полного пути
-            var path = _randomLib.GetCarImagePath(carName);
-
-            if (!System.IO.File.Exists(path))
-            {
-                await _botClient.SendTextMessageAsync(
-                    chatId,
-                    $"❌ Файл не найден:\n{path}",
-                    cancellationToken: ct);
-                return;
-            }
-
-            await using var stream = System.IO.File.OpenRead(path);
-            var file = InputFile.FromStream(stream, $"{carName}.jpg");
-
-            await _botClient.SendPhotoAsync(
-                chatId: chatId,
-                photo: file,
-                caption: $"Бричка сегодняшнего дня: {carName}",
-                parseMode: ParseMode.Html,
+            await _botClient.SendTextMessageAsync(
+                chatId,
+                $"Бричка сегодняшнего дня: {carName}",
                 cancellationToken: ct);
         }
 
