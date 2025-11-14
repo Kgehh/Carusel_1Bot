@@ -45,6 +45,7 @@ namespace Carusel_1Bot
             try
             {
 
+
                 switch (cmd)
                 {
                     case BotCommand.Start:
