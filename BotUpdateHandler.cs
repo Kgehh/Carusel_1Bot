@@ -44,8 +44,6 @@ namespace Carusel_1Bot
                 $"text -  {message.Text}\n" );
             try
             {
-
-
                 switch (cmd)
                 {
                     case BotCommand.Start:
